@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pyBTC Block Scan</title>
+</head>
+<body>
+<h1>pyBTC BLOCK SCAN</h1>
+<div>
+    <table>
+        <tr>
+            <th>timestamp</th>
+            <th>previous_hash</th>
+            <th>nonce</th>
+            <th>transactions</th>
+        </tr>
+
+        {%for i in range(0,block_len)%}
+<tr>
+    <td>{{df_scan.loc[i,'timestamp']}}</td>
+    <td>{{df_scan.loc[i,'previous_hash']}}</td>
+    <td>{{df_scan.loc[i,'nonce']}}</td>
+    <td>{{df_scan.loc[i,'transactions']}}</td>
+</tr>
+{%endfor%}
+    </table>
+</div>
+
+</body>
+</html>

@@ -2,8 +2,7 @@ import hashlib
 import json
 from time import time
 import random
-import requests
-from flask import Flask, request, jsonify
+
 
 # 객체 생성
 class Blockchain(object):
@@ -52,7 +51,7 @@ class Blockchain(object):
             'timestamp' : time(),
             'transactions': self.current_transaction,
             'nonce' : proof,
-            'previous_hash': previous_hash or self.hash(self.chain[-1]),
+            'previous_hash': previous_hash or self.hash(self.chain[-1])
         }
         self.current_transaction = []
         self.chain.append(block)
@@ -60,6 +59,7 @@ class Blockchain(object):
 
     # 블록 검증 함수
     def valid_chain(self,chain):
+        # 마지막 블록의 해시값
         last_block = chain[0]
         current_index = 1
         while current_index < len(chain):
@@ -67,6 +67,7 @@ class Blockchain(object):
             print('%s' % last_block)
             print('%s' % block)
             print("\n------------\n")
+            # 과거 거래내역에 변동이 있을시 False
             if block['previous_hash'] != self.hash(last_block):
                 return False
             last_block = block
